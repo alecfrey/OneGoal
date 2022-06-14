@@ -11,7 +11,7 @@ import SwiftUI
 struct OneGoalApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BottomBarView()
         }
     }
 }
