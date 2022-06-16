@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var model: OneGoalViewModel
+    @ObservedObject var model: GoalManager
     
     var body: some View {
         ZStack {
@@ -19,14 +19,29 @@ struct HomeView: View {
 }
 
 struct WriteGoalView: View {
-    @ObservedObject var model: OneGoalViewModel
+    @ObservedObject var model: GoalManager
     @State private var isPresented: Bool = false
     @State private var text: String = ""
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \GoalEntity.date, ascending: false)]) private var goals: FetchedResults<GoalEntity>
+    var todayGoal: GoalEntity? {
+        guard let goal = goals.first, let date = goal.date else {
+            return nil
+        }
+        if (Calendar.current.isDateInToday(date)) {
+            return goal
+        }
+        return nil
+    }
     
     var body: some View {
         ZStack(alignment: .center) {
             RoundedRectangle(cornerRadius: 25)
-                .foregroundColor(.mint)
+                .foregroundColor(.secondary)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 25)
+                        .stroke((todayGoal?.isFavorited ?? false ? .yellow : .clear), lineWidth: 5)
+                )
             VStack {
                 HStack {
                     Text("One Goal")
@@ -39,8 +54,8 @@ struct WriteGoalView: View {
                 }
                 .padding()
                 Spacer()
-                if model.isTodaysGoalCreated() {
-                    HomeGoalView(goal: $model.goalArray[model.goalArray.count - 1])
+                if let todayGoal = todayGoal {
+                    HomeGoalView(goal: todayGoal)
                 } else {
                     Button("Set Goal") {
                         self.text = ""
@@ -51,39 +66,30 @@ struct WriteGoalView: View {
                 Spacer()
             }
             NewGoalAlert(isShown: $isPresented, text: $text, onDone: { text in
-                var newGoalArray = self.model.goalArray
-                newGoalArray.append(Goal(description: text))
-                self.model.goalArray = newGoalArray
-                model.printNewGoal()
+                _ = GoalEntity(goalDescription: text, context: viewContext)
+                try? viewContext.save()
             })
         }
         .padding()
         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
         .frame(width: 320, height: 420)
+        .animation(.easeInOut(duration: 1))
     }
 }
 
 struct HomeGoalView: View {
-    @Binding var goal: Goal
+    @ObservedObject var goal: GoalEntity
 
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 15)
-                .frame(width: 225, height: 275)
-                //.foregroundColor(.gray).opacity(0.65)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 15)
-                        .stroke((goal.isFavorited ? .yellow : .clear), lineWidth: 5)
-                )
-                .animation(.easeInOut(duration: 1))
             VStack {
                 ScrollView {
-                    Text(goal.description)
+                    Text(goal.goalDescription ?? "")
                         .font(.title3)
-                        .foregroundColor(.black)
+                       // .foregroundColor(.black)
                 }
                 Spacer()
-                AccomplishedView(goal: $goal)
+                AccomplishedView(goal: goal)
                     .transition(.move(edge: .leading))
                     .animation(.easeInOut(duration: 1))
             }

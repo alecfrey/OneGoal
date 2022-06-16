@@ -11,8 +11,8 @@
 		C386785F284E5042007A4F2F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386785E284E5042007A4F2F /* HomeView.swift */; };
 		C3867861284E5049007A4F2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3867860284E5049007A4F2F /* Assets.xcassets */; };
 		C3867864284E5049007A4F2F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3867863284E5049007A4F2F /* Preview Assets.xcassets */; };
-		C386786B284E5142007A4F2F /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386786A284E5142007A4F2F /* Goal.swift */; };
-		C386786D284E5510007A4F2F /* OneGoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386786C284E5510007A4F2F /* OneGoalViewModel.swift */; };
+		C386786B284E5142007A4F2F /* GoalEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386786A284E5142007A4F2F /* GoalEntity.swift */; };
+		C386786D284E5510007A4F2F /* GoalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386786C284E5510007A4F2F /* GoalManager.swift */; };
 		C3867871284E8C9C007A4F2F /* NewGoalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3867870284E8C9C007A4F2F /* NewGoalAlert.swift */; };
 		C3867873284EEBC1007A4F2F /* GoalGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3867872284EEBC0007A4F2F /* GoalGalleryView.swift */; };
 		C3C705132858E3050069B776 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FA7BD62858DBE000B2B2D5 /* WidgetKit.framework */; };
@@ -22,6 +22,7 @@
 		C3C7051C2858E3070069B776 /* GoalWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C3C705182858E3050069B776 /* GoalWidget.intentdefinition */; };
 		C3C7051D2858E3070069B776 /* GoalWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C3C705182858E3050069B776 /* GoalWidget.intentdefinition */; };
 		C3C705202858E3070069B776 /* GoalWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C3C705122858E3050069B776 /* GoalWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C3D8DFC2285932F700519CCD /* Stash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3D8DFC0285932F700519CCD /* Stash.xcdatamodeld */; };
 		C3FA7BCD2853D75300B2B2D5 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA7BCC2853D75300B2B2D5 /* BottomBarView.swift */; };
 		C3FA7BCF2858568E00B2B2D5 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA7BCE2858568E00B2B2D5 /* CalendarView.swift */; };
 /* End PBXBuildFile section */
@@ -56,8 +57,8 @@
 		C386785E284E5042007A4F2F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C3867860284E5049007A4F2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3867863284E5049007A4F2F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C386786A284E5142007A4F2F /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
-		C386786C284E5510007A4F2F /* OneGoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneGoalViewModel.swift; sourceTree = "<group>"; };
+		C386786A284E5142007A4F2F /* GoalEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEntity.swift; sourceTree = "<group>"; };
+		C386786C284E5510007A4F2F /* GoalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalManager.swift; sourceTree = "<group>"; };
 		C3867870284E8C9C007A4F2F /* NewGoalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGoalAlert.swift; sourceTree = "<group>"; };
 		C3867872284EEBC0007A4F2F /* GoalGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalGalleryView.swift; sourceTree = "<group>"; };
 		C3C705122858E3050069B776 /* GoalWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GoalWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +66,7 @@
 		C3C705182858E3050069B776 /* GoalWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = GoalWidget.intentdefinition; sourceTree = "<group>"; };
 		C3C705192858E3070069B776 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3C7051B2858E3070069B776 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3D8DFC1285932F700519CCD /* Stash.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stash.xcdatamodel; sourceTree = "<group>"; };
 		C3FA7BCC2853D75300B2B2D5 /* BottomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
 		C3FA7BCE2858568E00B2B2D5 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		C3FA7BD62858DBE000B2B2D5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -118,6 +120,7 @@
 				C386786F284E5524007A4F2F /* Model */,
 				C3867860284E5049007A4F2F /* Assets.xcassets */,
 				C3867862284E5049007A4F2F /* Preview Content */,
+				C3D8DFC0285932F700519CCD /* Stash.xcdatamodeld */,
 			);
 			path = OneGoal;
 			sourceTree = "<group>";
@@ -135,7 +138,7 @@
 			children = (
 				C3867870284E8C9C007A4F2F /* NewGoalAlert.swift */,
 				C386785E284E5042007A4F2F /* HomeView.swift */,
-				C386786C284E5510007A4F2F /* OneGoalViewModel.swift */,
+				C386786C284E5510007A4F2F /* GoalManager.swift */,
 				C3867872284EEBC0007A4F2F /* GoalGalleryView.swift */,
 				C3FA7BCC2853D75300B2B2D5 /* BottomBarView.swift */,
 				C3FA7BCE2858568E00B2B2D5 /* CalendarView.swift */,
@@ -146,7 +149,7 @@
 		C386786F284E5524007A4F2F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C386786A284E5142007A4F2F /* Goal.swift */,
+				C386786A284E5142007A4F2F /* GoalEntity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -276,11 +279,12 @@
 				C3867873284EEBC1007A4F2F /* GoalGalleryView.swift in Sources */,
 				C3FA7BCF2858568E00B2B2D5 /* CalendarView.swift in Sources */,
 				C386785F284E5042007A4F2F /* HomeView.swift in Sources */,
-				C386786B284E5142007A4F2F /* Goal.swift in Sources */,
+				C386786B284E5142007A4F2F /* GoalEntity.swift in Sources */,
 				C3FA7BCD2853D75300B2B2D5 /* BottomBarView.swift in Sources */,
-				C386786D284E5510007A4F2F /* OneGoalViewModel.swift in Sources */,
+				C386786D284E5510007A4F2F /* GoalManager.swift in Sources */,
 				C3C7051D2858E3070069B776 /* GoalWidget.intentdefinition in Sources */,
 				C386785D284E5042007A4F2F /* OneGoalApp.swift in Sources */,
+				C3D8DFC2285932F700519CCD /* Stash.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,7 +509,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -532,7 +536,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -567,6 +571,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C3D8DFC0285932F700519CCD /* Stash.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C3D8DFC1285932F700519CCD /* Stash.xcdatamodel */,
+			);
+			currentVersion = C3D8DFC1285932F700519CCD /* Stash.xcdatamodel */;
+			path = Stash.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C3867851284E5042007A4F2F /* Project object */;
 }

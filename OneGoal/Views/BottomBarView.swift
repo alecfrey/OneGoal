@@ -22,7 +22,7 @@ enum GallerySelection {
 }
 
 struct BottomBarView: View {
-    @StateObject var viewModel = OneGoalViewModel()
+    @StateObject var viewModel = GoalManager()
     @State private var gallerySelection = GallerySelection.all
     let sortOptions: [GallerySelection] = [.all, .accomplished, .favorited]
 
@@ -66,6 +66,7 @@ struct BottomBarView: View {
             }
         }
         //.environmentObject(viewModel)
+        .environment(\.managedObjectContext, viewModel.container.viewContext)
     }
 }
 

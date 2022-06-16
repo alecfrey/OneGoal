@@ -44,7 +44,63 @@ struct GoalWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        Text(entry.date, style: .time)
+        VStack {
+            HStack {
+                Text("One Goal")
+                    .font(.headline)
+                Spacer()
+                Text(Date(), style: .date)
+                    .font(.subheadline)
+                    .fontWeight(.thin)
+            }
+            .padding(.horizontal)
+            .padding(.top)
+            ZStack {
+                Rectangle()
+                    //.foregroundColor(Color(goal.isAccomplished ? .green : .red))
+                    .animation(.easeIn(duration: 0.5))
+                HStack {
+                    GoalCardView()
+                    Spacer()
+                    VStack {
+                        Button(action: {
+                            
+                        }, label: {
+                            Image(systemName: "checkmark.square")
+                                .resizable()
+                                .frame(width: 35 , height: 35)
+                        })
+                        Button(action: {
+                            
+                        }, label: {
+                            Image(systemName: "star.square")
+                                .resizable()
+                                .frame(width: 35 , height: 35)
+                        })
+                    }
+                }
+                .padding(.horizontal)
+            }
+        }
+    }
+}
+
+struct GoalCardView: View {
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 15)
+                .foregroundColor(.white)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        //.stroke((goal.isFavorited ? .yellow : .clear), lineWidth: 5)
+                )
+                .animation(.easeInOut(duration: 1))
+            //Text(goal.description)
+                .padding()
+                .font(.caption)
+                .foregroundColor(.black)
+        }
+        .frame(width: 225, height: 85, alignment: .leading)
     }
 }
 

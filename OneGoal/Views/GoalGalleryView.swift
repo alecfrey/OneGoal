@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct GoalGalleryView: View {
-    @ObservedObject var model: OneGoalViewModel
+    @ObservedObject var model: GoalManager
     var gallerySelection: GallerySelection
     @Environment(\.colorScheme) var colorScheme
-    
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors: []) private var goals: FetchedResults<GoalEntity>
+
     var accomplishedColor: Color {
         if colorScheme == .light {
             return .green
@@ -20,15 +22,15 @@ struct GoalGalleryView: View {
         }
     }
 
-    var filteredResults: [Binding<Goal>] {
-        $model.goalArray.filter { goal in
+    var filteredResults: [GoalEntity] {
+        goals.filter { goal in
             switch gallerySelection {
                 case .all:
                     return true
                 case .accomplished:
-                    return goal.wrappedValue.isAccomplished
+                    return goal.isAccomplished
                 case .favorited:
-                    return goal.wrappedValue.isFavorited
+                    return goal.isFavorited
             }
         }
     }
@@ -38,14 +40,22 @@ struct GoalGalleryView: View {
             Section {
                 CardView(goal: goal)
             }
-            .listRowBackground(goal.wrappedValue.isAccomplished ? accomplishedColor : Color.red).animation(.easeIn(duration: 0.5))
+            .listRowBackground(goal.isAccomplished ? accomplishedColor : Color.red).animation(.easeIn(duration: 0.5))
             .shadow(radius: 0.5)
+            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                Button(action: {
+                    viewContext.delete(goal)
+                    try? viewContext.save()
+                }, label: {
+                    Text("Delete")
+                })
+            }
         }
     }
 }
                          
 struct CardView: View {
-    @Binding var goal: Goal
+    @ObservedObject var goal: GoalEntity
     @State var isExpanded = false
     
     var body: some View {
@@ -65,24 +75,24 @@ struct CardView: View {
         .frame(maxWidth: .infinity)
         .transition(.move(edge: .bottom))
         .cornerRadius(10)
-        Text(goal.description)
+        Text(goal.goalDescription ?? "")
             .font(.title2)
             .fontWeight(.thin)
             .fixedSize(horizontal: false, vertical: true)
             .multilineTextAlignment(.leading)
         if isExpanded {
-            ExpandedCardView(goal: $goal)
+            ExpandedCardView(goal: goal)
         }
     }
 }
 
 struct ExpandedCardView: View {
-    @Binding var goal: Goal
+    var goal: GoalEntity
 
     var body: some View {
         HStack {
             Spacer()
-            AccomplishedView(goal: $goal)
+            AccomplishedView(goal: goal)
                 .transition(.move(edge: .leading))
                 .animation(.easeInOut(duration: 1))
             Spacer()
@@ -92,14 +102,15 @@ struct ExpandedCardView: View {
 }
 
 struct AccomplishedView: View {
-    @Binding var goal: Goal
+    @ObservedObject var goal: GoalEntity
+    @Environment(\.managedObjectContext) private var viewContext
 
     var body: some View {
         HStack {
             // Favorite always or just on accomplished
             // if goal.goalArray[index].timeAccomplished != nil || goal.goalArray[index].wasNotAccomplished {
             if goal.timeAccomplished != nil {
-                StarView(goal: $goal)
+                StarView(goal: goal)
                 Spacer()
             }
             Button(action: {
@@ -111,6 +122,7 @@ struct AccomplishedView: View {
                 } else {
                     goal.wasNotAccomplished = true
                 }
+                try? viewContext.save()
             }) {
                 VStack {
                     if !goal.wasNotAccomplished {
@@ -141,11 +153,13 @@ struct AccomplishedView: View {
 }
 
 struct StarView: View {
-    @Binding var goal: Goal
+    @ObservedObject var goal: GoalEntity
+    @Environment(\.managedObjectContext) private var viewContext
 
     var body: some View {
         Button(action: {
             goal.isFavorited.toggle()
+            try? viewContext.save()
         }) {
             VStack {
                 Image(systemName: goal.isFavorited ? "star.square.fill" : "star.square")

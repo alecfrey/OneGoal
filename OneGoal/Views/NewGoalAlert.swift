@@ -15,7 +15,7 @@ struct NewGoalAlert: View {
     var onDone: (String) -> Void = { _ in }
     var onCancel: () -> Void =  { }
     @State private var current: Int?
-    @EnvironmentObject var goal: OneGoalViewModel
+    @EnvironmentObject var goal: GoalManager
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
