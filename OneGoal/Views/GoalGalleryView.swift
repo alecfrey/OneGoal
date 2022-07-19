@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct GoalGalleryView: View {
-    @ObservedObject var model: GoalManager
+    @StateObject var model: GoalManager
     var gallerySelection: GallerySelection
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors: []) private var goals: FetchedResults<GoalEntity>
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \GoalEntity.date, ascending: false)]) private var goals: FetchedResults<GoalEntity>
 
     var accomplishedColor: Color {
         if colorScheme == .light {
             return .green
         } else {
-            return .green.opacity(0.65)
+            return .green.opacity(0.75)
         }
     }
 
@@ -36,65 +36,97 @@ struct GoalGalleryView: View {
     }
     
     var body: some View {
-        List(filteredResults) { goal in
-            Section {
-                CardView(goal: goal)
+        ScrollView {
+            LazyVStack() {
+                ForEach(filteredResults) { goal in
+                    VStack(alignment: .leading, spacing: 10) {
+                        CardView(goal: goal, forCalendarView: false)
+                            .padding(.horizontal)
+
+                    }
+                    .padding(.vertical, 12)
+                    .background(goal.isAccomplished ? accomplishedColor : notAccomplishedColor(goal: goal))
+                    .cornerRadius(12)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke((goal.isFavorited ? .yellow : .clear), lineWidth: 6)
+                    )
+                    .padding(3)
+                    .contextMenu {
+                        Button(role: .destructive) {
+                            viewContext.delete(goal)
+                            try? viewContext.save()
+                        } label: {
+                            Text("Delete")
+                        }
+                    }
+                    .shadow(radius: 0.5)
+                }
             }
-            .listRowBackground(goal.isAccomplished ? accomplishedColor : Color.red).animation(.easeIn(duration: 0.5))
-            .shadow(radius: 0.5)
-            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                Button(action: {
-                    viewContext.delete(goal)
-                    try? viewContext.save()
-                }, label: {
-                    Text("Delete")
-                })
-            }
+            .padding()
         }
     }
+}
+
+func notAccomplishedColor(goal: GoalEntity) -> Color {
+    if goal.wasNotAccomplished {
+        return .red
+    }
+    return .gray
 }
                          
 struct CardView: View {
     @ObservedObject var goal: GoalEntity
     @State var isExpanded = false
+    var forCalendarView: Bool
     
     var body: some View {
         HStack {
             Text(goal.dateFormatted())
-                .font(.title)
+                .font(.title2)
                 .fontWeight(.bold)
             Spacer()
-            Image(systemName: "chevron.compact.down")
-                .foregroundColor(.blue)
+            if forCalendarView {
+                if goal.timeAccomplished != nil {
+                    Text(String(goal.timeAccomplished ?? ""))
+                        .font(.caption2)
+                } else if goal.wasNotAccomplished {
+                    Text("Overdue")
+                        .font(.caption2)
+                }
+            } else {
+                Image(systemName: "chevron.compact.down")
+                    .foregroundColor(.blue)
+            }
         }
         .onTapGesture {
-            withAnimation(.easeInOut(duration: 0.5)) {
+            withAnimation(.spring()) {
                 isExpanded.toggle()
             }
         }
         .frame(maxWidth: .infinity)
-        .transition(.move(edge: .bottom))
-        .cornerRadius(10)
         Text(goal.goalDescription ?? "")
             .font(.title2)
             .fontWeight(.thin)
-            .fixedSize(horizontal: false, vertical: true)
             .multilineTextAlignment(.leading)
-        if isExpanded {
+        if isExpanded && !forCalendarView {
             ExpandedCardView(goal: goal)
+                .padding(.top)
         }
     }
 }
 
 struct ExpandedCardView: View {
     var goal: GoalEntity
+    @State private var scale = 1.0
+
 
     var body: some View {
         HStack {
             Spacer()
-            AccomplishedView(goal: goal)
+            AccomplishedView(goal: goal, forTodayView: false)
                 .transition(.move(edge: .leading))
-                .animation(.easeInOut(duration: 1))
+               // .animation(.easeInOut(duration: 0.4))
             Spacer()
         }
         .padding(.horizontal)
@@ -103,14 +135,13 @@ struct ExpandedCardView: View {
 
 struct AccomplishedView: View {
     @ObservedObject var goal: GoalEntity
+    var forTodayView: Bool
     @Environment(\.managedObjectContext) private var viewContext
 
     var body: some View {
         HStack {
-            // Favorite always or just on accomplished
-            // if goal.goalArray[index].timeAccomplished != nil || goal.goalArray[index].wasNotAccomplished {
             if goal.timeAccomplished != nil {
-                StarView(goal: goal)
+                StarView(goal: goal, forTodayView: forTodayView)
                 Spacer()
             }
             Button(action: {
@@ -119,8 +150,6 @@ struct AccomplishedView: View {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "h:mm a"
                     goal.timeAccomplished = String(dateFormatter.string(from: Date()))
-                } else {
-                    goal.wasNotAccomplished = true
                 }
                 try? viewContext.save()
             }) {
@@ -154,6 +183,7 @@ struct AccomplishedView: View {
 
 struct StarView: View {
     @ObservedObject var goal: GoalEntity
+    var forTodayView: Bool
     @Environment(\.managedObjectContext) private var viewContext
 
     var body: some View {
@@ -170,6 +200,7 @@ struct StarView: View {
             }
         }
         .font(.title)
+        .tint(forTodayView ? Color(0x659AFF) : Color.blue)
         .buttonStyle(BorderlessButtonStyle())
     }
 }

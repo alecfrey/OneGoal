@@ -8,9 +8,9 @@
 import Foundation
 import CoreData
 
-class GoalManager: NSObject, ObservableObject {    
+class GoalManager: NSObject, NSFetchedResultsControllerDelegate, ObservableObject {
     let container = NSPersistentContainer(name: "Stash")
-    
+
     override init() {
         super.init()
         container.loadPersistentStores { _, _ in }

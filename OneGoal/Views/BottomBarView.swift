@@ -25,20 +25,17 @@ struct BottomBarView: View {
     @StateObject var viewModel = GoalManager()
     @State private var gallerySelection = GallerySelection.all
     let sortOptions: [GallerySelection] = [.all, .accomplished, .favorited]
-
-    init() {
-        //UITabBar.appearance().backgroundColor = .black
-    }
     
     var body: some View {
         TabView {
             NavigationView {
-                HomeView(model: viewModel)
-                    .navigationTitle("Home")
+                TodayView(model: viewModel)
+                    .navigationTitle("Today")
+                    .ignoresSafeArea(.keyboard, edges: .bottom)
             }
             .tabItem {
-                Image(systemName: "house")
-                Text("Home")
+                Image(systemName: "doc.text.image")
+                Text("Today")
             }
             NavigationView {
                 GoalGalleryView(model: viewModel, gallerySelection: gallerySelection)
@@ -57,8 +54,9 @@ struct BottomBarView: View {
                 Text("Gallery")
             }
             NavigationView {
-                CalendarView()
-                    .navigationTitle("Calendar")
+                CalendarTabView()
+                    //.navigationTitle("Calendar")
+                    .navigationBarHidden(true)
             }
             .tabItem {
                 Image(systemName: "calendar")
@@ -67,6 +65,20 @@ struct BottomBarView: View {
         }
         //.environmentObject(viewModel)
         .environment(\.managedObjectContext, viewModel.container.viewContext)
+    }
+}
+
+extension UINavigationBar {
+    static func changeAppearance(clear: Bool) {
+        let appearance = UINavigationBarAppearance()
+        if clear {
+            appearance.configureWithTransparentBackground()
+        } else {
+            appearance.configureWithDefaultBackground()
+        }
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
 }
 

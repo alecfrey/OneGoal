@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "swiftuicalendar",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/GGJJack/SwiftUICalendar",
+      "state" : {
+        "revision" : "65f47576cd5fd427f86fe7f60a1a9f8c19e38be9",
+        "version" : "0.1.12"
+      }
+    }
+  ],
+  "version" : 2
+}

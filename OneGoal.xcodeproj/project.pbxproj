@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C37AE4B7286B8C1E008EE605 /* SwiftUICalendar in Frameworks */ = {isa = PBXBuildFile; productRef = C37AE4B6286B8C1E008EE605 /* SwiftUICalendar */; };
 		C386785D284E5042007A4F2F /* OneGoalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386785C284E5042007A4F2F /* OneGoalApp.swift */; };
-		C386785F284E5042007A4F2F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386785E284E5042007A4F2F /* HomeView.swift */; };
+		C386785F284E5042007A4F2F /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386785E284E5042007A4F2F /* TodayView.swift */; };
 		C3867861284E5049007A4F2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3867860284E5049007A4F2F /* Assets.xcassets */; };
 		C3867864284E5049007A4F2F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3867863284E5049007A4F2F /* Preview Assets.xcassets */; };
 		C386786B284E5142007A4F2F /* GoalEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386786A284E5142007A4F2F /* GoalEntity.swift */; };
@@ -24,10 +25,17 @@
 		C3C705202858E3070069B776 /* GoalWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C3C705122858E3050069B776 /* GoalWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C3D8DFC2285932F700519CCD /* Stash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3D8DFC0285932F700519CCD /* Stash.xcdatamodeld */; };
 		C3FA7BCD2853D75300B2B2D5 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA7BCC2853D75300B2B2D5 /* BottomBarView.swift */; };
-		C3FA7BCF2858568E00B2B2D5 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA7BCE2858568E00B2B2D5 /* CalendarView.swift */; };
+		C3FA7BCF2858568E00B2B2D5 /* CalendarTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA7BCE2858568E00B2B2D5 /* CalendarTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C38CE246288662CD005AE55E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3867851284E5042007A4F2F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C3C705112858E3050069B776;
+			remoteInfo = GoalWidgetExtension;
+		};
 		C3C7051E2858E3070069B776 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C3867851284E5042007A4F2F /* Project object */;
@@ -52,9 +60,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C37AE4B4286019F5008EE605 /* GoalWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoalWidgetExtension.entitlements; sourceTree = "<group>"; };
 		C3867859284E5042007A4F2F /* OneGoal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OneGoal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C386785C284E5042007A4F2F /* OneGoalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneGoalApp.swift; sourceTree = "<group>"; };
-		C386785E284E5042007A4F2F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		C386785E284E5042007A4F2F /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		C3867860284E5049007A4F2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3867863284E5049007A4F2F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C386786A284E5142007A4F2F /* GoalEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEntity.swift; sourceTree = "<group>"; };
@@ -68,7 +77,7 @@
 		C3C7051B2858E3070069B776 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3D8DFC1285932F700519CCD /* Stash.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stash.xcdatamodel; sourceTree = "<group>"; };
 		C3FA7BCC2853D75300B2B2D5 /* BottomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
-		C3FA7BCE2858568E00B2B2D5 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		C3FA7BCE2858568E00B2B2D5 /* CalendarTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTabView.swift; sourceTree = "<group>"; };
 		C3FA7BD62858DBE000B2B2D5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		C3FA7BD82858DBE000B2B2D5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -78,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C37AE4B7286B8C1E008EE605 /* SwiftUICalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +106,7 @@
 		C3867850284E5042007A4F2F = {
 			isa = PBXGroup;
 			children = (
+				C37AE4B4286019F5008EE605 /* GoalWidgetExtension.entitlements */,
 				C386785B284E5042007A4F2F /* OneGoal */,
 				C3C705152858E3050069B776 /* GoalWidget */,
 				C3FA7BD52858DBE000B2B2D5 /* Frameworks */,
@@ -137,11 +148,10 @@
 			isa = PBXGroup;
 			children = (
 				C3867870284E8C9C007A4F2F /* NewGoalAlert.swift */,
-				C386785E284E5042007A4F2F /* HomeView.swift */,
-				C386786C284E5510007A4F2F /* GoalManager.swift */,
+				C386785E284E5042007A4F2F /* TodayView.swift */,
 				C3867872284EEBC0007A4F2F /* GoalGalleryView.swift */,
 				C3FA7BCC2853D75300B2B2D5 /* BottomBarView.swift */,
-				C3FA7BCE2858568E00B2B2D5 /* CalendarView.swift */,
+				C3FA7BCE2858568E00B2B2D5 /* CalendarTabView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -149,6 +159,7 @@
 		C386786F284E5524007A4F2F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C386786C284E5510007A4F2F /* GoalManager.swift */,
 				C386786A284E5142007A4F2F /* GoalEntity.swift */,
 			);
 			path = Model;
@@ -190,8 +201,12 @@
 			);
 			dependencies = (
 				C3C7051F2858E3070069B776 /* PBXTargetDependency */,
+				C38CE247288662CD005AE55E /* PBXTargetDependency */,
 			);
 			name = OneGoal;
+			packageProductDependencies = (
+				C37AE4B6286B8C1E008EE605 /* SwiftUICalendar */,
+			);
 			productName = OneGoal;
 			productReference = C3867859284E5042007A4F2F /* OneGoal.app */;
 			productType = "com.apple.product-type.application";
@@ -240,6 +255,9 @@
 				Base,
 			);
 			mainGroup = C3867850284E5042007A4F2F;
+			packageReferences = (
+				C37AE4B5286B8C1E008EE605 /* XCRemoteSwiftPackageReference "SwiftUICalendar" */,
+			);
 			productRefGroup = C386785A284E5042007A4F2F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -277,8 +295,8 @@
 			files = (
 				C3867871284E8C9C007A4F2F /* NewGoalAlert.swift in Sources */,
 				C3867873284EEBC1007A4F2F /* GoalGalleryView.swift in Sources */,
-				C3FA7BCF2858568E00B2B2D5 /* CalendarView.swift in Sources */,
-				C386785F284E5042007A4F2F /* HomeView.swift in Sources */,
+				C3FA7BCF2858568E00B2B2D5 /* CalendarTabView.swift in Sources */,
+				C386785F284E5042007A4F2F /* TodayView.swift in Sources */,
 				C386786B284E5142007A4F2F /* GoalEntity.swift in Sources */,
 				C3FA7BCD2853D75300B2B2D5 /* BottomBarView.swift in Sources */,
 				C386786D284E5510007A4F2F /* GoalManager.swift in Sources */,
@@ -300,6 +318,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C38CE247288662CD005AE55E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C3C705112858E3050069B776 /* GoalWidgetExtension */;
+			targetProxy = C38CE246288662CD005AE55E /* PBXContainerItemProxy */;
+		};
 		C3C7051F2858E3070069B776 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C3C705112858E3050069B776 /* GoalWidgetExtension */;
@@ -358,7 +381,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -412,7 +435,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -438,19 +461,19 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortraitUpsideDown;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.alecfrey.OneGoal;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = OneGoal;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -470,19 +493,19 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortraitUpsideDown;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.alecfrey.OneGoal;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = OneGoal;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -571,6 +594,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C37AE4B5286B8C1E008EE605 /* XCRemoteSwiftPackageReference "SwiftUICalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GGJJack/SwiftUICalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C37AE4B6286B8C1E008EE605 /* SwiftUICalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C37AE4B5286B8C1E008EE605 /* XCRemoteSwiftPackageReference "SwiftUICalendar" */;
+			productName = SwiftUICalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		C3D8DFC0285932F700519CCD /* Stash.xcdatamodeld */ = {

@@ -42,12 +42,13 @@ struct SimpleEntry: TimelineEntry {
 
 struct GoalWidgetEntryView : View {
     var entry: Provider.Entry
-
+    
     var body: some View {
         VStack {
             HStack {
                 Text("One Goal")
                     .font(.headline)
+                    .foregroundColor(.purple)
                 Spacer()
                 Text(Date(), style: .date)
                     .font(.subheadline)
@@ -90,10 +91,13 @@ struct GoalCardView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 15)
                 .foregroundColor(.white)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 15)
-                        //.stroke((goal.isFavorited ? .yellow : .clear), lineWidth: 5)
-                )
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 15)
+//                        //.stroke((goal.isFavorited ? .yellow : .clear), lineWidth: 5)
+//                        .foregroundColor(.white)
+//                        .border(.black, width: 5)
+//                )
+                .cornerRadius(15)
                 .animation(.easeInOut(duration: 1))
             //Text(goal.description)
                 .padding()
@@ -112,8 +116,10 @@ struct GoalWidget: Widget {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             GoalWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+       // .supportedFamilies([.systemMedium])
+        .supportedFamilies([])
+        .configurationDisplayName("Today Aim")
+        .description("Accomplish the aim of the day.")
     }
 }
 

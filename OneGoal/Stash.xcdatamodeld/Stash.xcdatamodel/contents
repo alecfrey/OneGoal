@@ -7,9 +7,8 @@
         <attribute name="isAccomplished" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isFavorited" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="timeAccomplished" optional="YES" attributeType="String"/>
-        <attribute name="wasNotAccomplished" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="GoalEntity" positionX="-63" positionY="-18" width="128" height="134"/>
+        <element name="GoalEntity" positionX="-63" positionY="-18" width="128" height="119"/>
     </elements>
 </model>

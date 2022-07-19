@@ -9,31 +9,6 @@ import Foundation
 import SwiftUI
 import CoreData
 
-/*
-struct Goal: Identifiable {
-    let id: UUID
-    let description: String
-    let date: String
-    private let rawDate: Date
-    var isAccomplished: Bool
-    var timeAccomplished: String?
-    var wasNotAccomplished: Bool
-    var isFavorited: Bool
-    
-    init(description: String) {
-        self.description = description
-        self.isAccomplished = false
-        self.isFavorited = false
-        self.wasNotAccomplished = false
-        self.id = UUID()
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        self.date = dateFormatter.string(from: Date())
-        self.rawDate = Date()
-    }
-*/
-
 extension GoalEntity {
     convenience init(goalDescription: String, context: NSManagedObjectContext) {
         self.init(context: context)
@@ -42,7 +17,6 @@ extension GoalEntity {
         self.date = Date()
         self.isAccomplished = false
         self.isFavorited = false
-        self.wasNotAccomplished = false
     }
     
     func dateFormatted() -> String {
@@ -57,6 +31,20 @@ extension GoalEntity {
             return false
         }
         return Calendar.current.isDateInToday(date)
+    }
+    
+    var offsetFromCurrentDay: Int {
+        let calendar = Calendar.current
+        guard let date = self.date else {
+            return 0
+        }
+        let goalDate = calendar.startOfDay(for: date)
+        let todayDate = calendar.startOfDay(for: Date())
+        return calendar.dateComponents([.day], from: todayDate, to: goalDate).day!
+    }
+    
+    var wasNotAccomplished: Bool {
+        return !isAccomplished && !goalWasCreatedToday
     }
 }
     
