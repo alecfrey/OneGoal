@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  OneGoal
+//  Today Aim
 //
 //  Created by Alec Frey on 6/6/22.
 //
@@ -9,25 +9,25 @@ import SwiftUI
 import SwiftUICalendar
 
 struct TodayView: View {
-    @ObservedObject var model: GoalManager
+    @ObservedObject var model: AimManager
     
     var body: some View {
         ZStack {
             TodayGradient()
-            WriteGoalView(model: model)
+            WriteAimView(model: model)
                 .padding(.horizontal, 32)
         }
     }
 }
 
-struct WriteGoalView: View {
-    @ObservedObject var model: GoalManager
+struct WriteAimView: View {
+    @ObservedObject var model: AimManager
     @State private var isPresented: Bool = false
     @State private var isEdited: Bool = false
     @State private var text: String = ""
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.colorScheme) var colorScheme
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \GoalEntity.date, ascending: false)]) private var goals: FetchedResults<GoalEntity>
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \TodayAimEntity.date, ascending: false)]) private var aims: FetchedResults<TodayAimEntity>
     
     var isLightMode: Bool {
         if colorScheme == .light {
@@ -37,12 +37,12 @@ struct WriteGoalView: View {
         }
     }
     
-    var todayGoal: GoalEntity? {
-        guard let goal = goals.first, let date = goal.date else {
+    var todayAim: TodayAimEntity? {
+        guard let aim = aims.first, let date = aim.date else {
             return nil
         }
         if (Calendar.current.isDateInToday(date)) {
-            return goal
+            return aim
         }
         return nil
     }
@@ -63,8 +63,8 @@ struct WriteGoalView: View {
                 .padding()
                 .background(isLightMode ? .white.opacity(0.6) : .black.opacity(0.6))
                 Spacer()
-                if let todayGoal = todayGoal {
-                    TodayGoalView(goal: todayGoal)
+                if let todayAim = todayAim {
+                    TodayAimView(aim: todayAim)
                 } else {
                     Button("Set Aim") {
                         self.text = ""
@@ -79,14 +79,14 @@ struct WriteGoalView: View {
             .cornerRadius(25)
             .background(
                 RoundedRectangle(cornerRadius: 25)
-                    .stroke((todayGoal?.isFavorited ?? false ? .yellow : .clear), lineWidth: 6)
+                    .stroke((todayAim?.isFavorited ?? false ? .yellow : .clear), lineWidth: 6)
             )
-            NewGoalAlert(isShown: $isPresented, text: $text, title: "Enter Today's Aim", onDone: { text in
-                _ = GoalEntity(goalDescription: text.trimmingCharacters(in: .whitespaces), context: viewContext)
+            NewAimAlert(isShown: $isPresented, text: $text, title: "Enter Today's Aim", onDone: { text in
+                _ = TodayAimEntity(aimDescription: text.trimmingCharacters(in: .whitespaces), context: viewContext)
                 try? viewContext.save()
             })
-            NewGoalAlert(isShown: $isEdited, text: $text, title: "Edit Aim Description", onDone: { text in
-                todayGoal!.goalDescription = text.trimmingCharacters(in: .whitespaces)
+            NewAimAlert(isShown: $isEdited, text: $text, title: "Edit Aim Description", onDone: { text in
+                todayAim!.aimDescription = text.trimmingCharacters(in: .whitespaces)
                 try? viewContext.save()
             })
         }
@@ -95,9 +95,9 @@ struct WriteGoalView: View {
         .padding(6)
         .contextMenu {
             if !isEdited {
-                if let todayGoal = todayGoal {
+                if let todayAim = todayAim {
                     Button("Edit") {
-                        self.text = todayGoal.goalDescription!
+                        self.text = todayAim.aimDescription!
                         // Slight delay to allow context menu animation to finish
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                             self.isEdited = true
@@ -105,22 +105,22 @@ struct WriteGoalView: View {
                     Button("Mark Not Accomplished") {
                         // Slight delay to allow context menu animation to finish
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                            if todayGoal.isAccomplished {
-                                todayGoal.isFavorited = false
-                                todayGoal.isAccomplished = false
-                                todayGoal.timeAccomplished = nil
+                            if todayAim.isAccomplished {
+                                todayAim.isFavorited = false
+                                todayAim.isAccomplished = false
+                                todayAim.timeAccomplished = nil
                                 try? viewContext.save()
                             }
                         }
                     }
                     Button(role: .destructive) {
-                        viewContext.delete(todayGoal)
+                        viewContext.delete(todayAim)
                         try? viewContext.save()
                     } label: {
                         Text("Delete")
                     }
                 } else {
-                    Button("Set Goal") {
+                    Button("Set") {
                         self.text = ""
                         // Slight delay to allow context menu animation to finish
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
@@ -134,18 +134,18 @@ struct WriteGoalView: View {
     }
 }
 
-struct TodayGoalView: View {
-    @ObservedObject var goal: GoalEntity
+struct TodayAimView: View {
+    @ObservedObject var aim: TodayAimEntity
 
     var body: some View {
         ZStack {
             VStack {
                 ScrollView {
-                    Text(goal.goalDescription ?? "")
+                    Text(aim.aimDescription ?? "")
                         .font(.title2)
                 }
                 Spacer()
-                AccomplishedView(goal: goal, forTodayView: true)
+                AccomplishedView(aim: aim, forTodayView: true)
                     .transition(.move(edge: .leading))
                     .padding(.top)
             }
@@ -201,7 +201,7 @@ extension Color {
 /*
 struct TodayView_Previews: PreviewProvider {
     static var previews: some View {
-        WriteGoalView()
+        WriteAimView()
     }
 }
 */

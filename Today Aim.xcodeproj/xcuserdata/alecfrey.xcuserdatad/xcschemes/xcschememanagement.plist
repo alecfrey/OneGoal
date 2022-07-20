@@ -4,15 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>GoalWidgetExtension.xcscheme_^#shared#^_</key>
+		<key>AimWidgetExtension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
 			<true/>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>OneGoal.xcscheme_^#shared#^_</key>
+		<key>Today Aim.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>

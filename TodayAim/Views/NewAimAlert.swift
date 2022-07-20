@@ -1,13 +1,13 @@
 //
-//  NewGoalAlert.swift
-//  OneGoal
+//  NewAimAlert.swift
+//  Today Aim
 //
 //  Created by Alec Frey on 6/6/22.
 //
 
 import SwiftUI
 
-struct NewGoalAlert: View {
+struct NewAimAlert: View {
     let screenSize = UIScreen.main.bounds
     @Binding var isShown: Bool
     @Binding var text: String
@@ -15,7 +15,7 @@ struct NewGoalAlert: View {
     var onDone: (String) -> Void = { _ in }
     var onCancel: () -> Void =  { }
     @State private var current: Int?
-    @EnvironmentObject var goal: GoalManager
+    @EnvironmentObject var aim: AimManager
     @Environment(\.colorScheme) var colorScheme
     //@FocusState var keyboardFocused: Bool
     
@@ -71,8 +71,8 @@ extension UIApplication {
     }
 }
 
-struct NewGoalAlert_Previews: PreviewProvider {
+struct NewAimAlert_Previews: PreviewProvider {
     static var previews: some View {
-        NewGoalAlert(isShown: .constant(true), text: .constant(""), title: "Title")
+        NewAimAlert(isShown: .constant(true), text: .constant(""), title: "Title")
     }
 }

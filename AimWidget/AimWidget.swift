@@ -1,6 +1,6 @@
 //
-//  GoalWidget.swift
-//  GoalWidget
+//  AimWidget.swift
+//  AimWidget
 //
 //  Created by Alec Frey on 6/14/22.
 //
@@ -40,13 +40,13 @@ struct SimpleEntry: TimelineEntry {
     let configuration: ConfigurationIntent
 }
 
-struct GoalWidgetEntryView : View {
+struct AimWidgetEntryView : View {
     var entry: Provider.Entry
     
     var body: some View {
         VStack {
             HStack {
-                Text("One Goal")
+                Text("Today Aim")
                     .font(.headline)
                     .foregroundColor(.purple)
                 Spacer()
@@ -58,10 +58,10 @@ struct GoalWidgetEntryView : View {
             .padding(.top)
             ZStack {
                 Rectangle()
-                    //.foregroundColor(Color(goal.isAccomplished ? .green : .red))
+                    //.foregroundColor(Color(aim.isAccomplished ? .green : .red))
                     .animation(.easeIn(duration: 0.5))
                 HStack {
-                    GoalCardView()
+                    AimCardView()
                     Spacer()
                     VStack {
                         Button(action: {
@@ -86,20 +86,20 @@ struct GoalWidgetEntryView : View {
     }
 }
 
-struct GoalCardView: View {
+struct AimCardView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15)
                 .foregroundColor(.white)
 //                .overlay(
 //                    RoundedRectangle(cornerRadius: 15)
-//                        //.stroke((goal.isFavorited ? .yellow : .clear), lineWidth: 5)
+//                        //.stroke((aim.isFavorited ? .yellow : .clear), lineWidth: 5)
 //                        .foregroundColor(.white)
 //                        .border(.black, width: 5)
 //                )
                 .cornerRadius(15)
                 .animation(.easeInOut(duration: 1))
-            //Text(goal.description)
+            //Text(aim.description)
                 .padding()
                 .font(.caption)
                 .foregroundColor(.black)
@@ -109,23 +109,23 @@ struct GoalCardView: View {
 }
 
 @main
-struct GoalWidget: Widget {
-    let kind: String = "GoalWidget"
+struct AimWidget: Widget {
+    let kind: String = "AimWidget"
 
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-            GoalWidgetEntryView(entry: entry)
+            AimWidgetEntryView(entry: entry)
         }
-       // .supportedFamilies([.systemMedium])
+        //.supportedFamilies([.systemMedium])
         .supportedFamilies([])
         .configurationDisplayName("Today Aim")
         .description("Accomplish the aim of the day.")
     }
 }
 
-struct GoalWidget_Previews: PreviewProvider {
+struct AimWidget_Previews: PreviewProvider {
     static var previews: some View {
-        GoalWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+        AimWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

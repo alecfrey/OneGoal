@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="GoalEntity" representedClassName="GoalEntity" syncable="YES" codeGenerationType="class">
+    <entity name="TodayAimEntity" representedClassName="TodayAimEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="aimDescription" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="goalDescription" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isAccomplished" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isFavorited" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="timeAccomplished" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="GoalEntity" positionX="-63" positionY="-18" width="128" height="119"/>
+        <element name="TodayAimEntity" positionX="-63" positionY="-18" width="128" height="119"/>
     </elements>
 </model>

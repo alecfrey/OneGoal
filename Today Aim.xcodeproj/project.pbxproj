@@ -8,21 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		C37AE4B7286B8C1E008EE605 /* SwiftUICalendar in Frameworks */ = {isa = PBXBuildFile; productRef = C37AE4B6286B8C1E008EE605 /* SwiftUICalendar */; };
-		C386785D284E5042007A4F2F /* OneGoalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386785C284E5042007A4F2F /* OneGoalApp.swift */; };
+		C386785D284E5042007A4F2F /* TodayAimApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386785C284E5042007A4F2F /* TodayAimApp.swift */; };
 		C386785F284E5042007A4F2F /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386785E284E5042007A4F2F /* TodayView.swift */; };
 		C3867861284E5049007A4F2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3867860284E5049007A4F2F /* Assets.xcassets */; };
 		C3867864284E5049007A4F2F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3867863284E5049007A4F2F /* Preview Assets.xcassets */; };
-		C386786B284E5142007A4F2F /* GoalEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386786A284E5142007A4F2F /* GoalEntity.swift */; };
-		C386786D284E5510007A4F2F /* GoalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386786C284E5510007A4F2F /* GoalManager.swift */; };
-		C3867871284E8C9C007A4F2F /* NewGoalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3867870284E8C9C007A4F2F /* NewGoalAlert.swift */; };
-		C3867873284EEBC1007A4F2F /* GoalGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3867872284EEBC0007A4F2F /* GoalGalleryView.swift */; };
+		C386786B284E5142007A4F2F /* TodayAimEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386786A284E5142007A4F2F /* TodayAimEntity.swift */; };
+		C386786D284E5510007A4F2F /* AimManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386786C284E5510007A4F2F /* AimManager.swift */; };
+		C3867871284E8C9C007A4F2F /* NewAimAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3867870284E8C9C007A4F2F /* NewAimAlert.swift */; };
+		C3867873284EEBC1007A4F2F /* AimGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3867872284EEBC0007A4F2F /* AimGalleryView.swift */; };
 		C3C705132858E3050069B776 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FA7BD62858DBE000B2B2D5 /* WidgetKit.framework */; };
 		C3C705142858E3050069B776 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FA7BD82858DBE000B2B2D5 /* SwiftUI.framework */; };
-		C3C705172858E3050069B776 /* GoalWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C705162858E3050069B776 /* GoalWidget.swift */; };
+		C3C705172858E3050069B776 /* AimWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C705162858E3050069B776 /* AimWidget.swift */; };
 		C3C7051A2858E3070069B776 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3C705192858E3070069B776 /* Assets.xcassets */; };
-		C3C7051C2858E3070069B776 /* GoalWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C3C705182858E3050069B776 /* GoalWidget.intentdefinition */; };
-		C3C7051D2858E3070069B776 /* GoalWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C3C705182858E3050069B776 /* GoalWidget.intentdefinition */; };
-		C3C705202858E3070069B776 /* GoalWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C3C705122858E3050069B776 /* GoalWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C3C7051C2858E3070069B776 /* AimWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C3C705182858E3050069B776 /* AimWidget.intentdefinition */; };
+		C3C7051D2858E3070069B776 /* AimWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C3C705182858E3050069B776 /* AimWidget.intentdefinition */; };
+		C3C705202858E3070069B776 /* AimWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C3C705122858E3050069B776 /* AimWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C3D8DFC2285932F700519CCD /* Stash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3D8DFC0285932F700519CCD /* Stash.xcdatamodeld */; };
 		C3FA7BCD2853D75300B2B2D5 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA7BCC2853D75300B2B2D5 /* BottomBarView.swift */; };
 		C3FA7BCF2858568E00B2B2D5 /* CalendarTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FA7BCE2858568E00B2B2D5 /* CalendarTabView.swift */; };
@@ -35,6 +35,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = C3C705112858E3050069B776;
 			remoteInfo = GoalWidgetExtension;
+		};
+		C3A25FB6288674A60095323C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3867851284E5042007A4F2F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C3C705112858E3050069B776;
+			remoteInfo = AimWidgetExtension;
+		};
+		C3A25FB8288674AE0095323C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3867851284E5042007A4F2F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C3C705112858E3050069B776;
+			remoteInfo = AimWidgetExtension;
 		};
 		C3C7051E2858E3070069B776 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,7 +66,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C3C705202858E3070069B776 /* GoalWidgetExtension.appex in Embed App Extensions */,
+				C3C705202858E3070069B776 /* AimWidgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,19 +74,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C37AE4B4286019F5008EE605 /* GoalWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoalWidgetExtension.entitlements; sourceTree = "<group>"; };
-		C3867859284E5042007A4F2F /* OneGoal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OneGoal.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C386785C284E5042007A4F2F /* OneGoalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneGoalApp.swift; sourceTree = "<group>"; };
+		C37AE4B4286019F5008EE605 /* AimWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AimWidgetExtension.entitlements; sourceTree = "<group>"; };
+		C3867859284E5042007A4F2F /* Today Aim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Today Aim.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C386785C284E5042007A4F2F /* TodayAimApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayAimApp.swift; sourceTree = "<group>"; };
 		C386785E284E5042007A4F2F /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		C3867860284E5049007A4F2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3867863284E5049007A4F2F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C386786A284E5142007A4F2F /* GoalEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEntity.swift; sourceTree = "<group>"; };
-		C386786C284E5510007A4F2F /* GoalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalManager.swift; sourceTree = "<group>"; };
-		C3867870284E8C9C007A4F2F /* NewGoalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGoalAlert.swift; sourceTree = "<group>"; };
-		C3867872284EEBC0007A4F2F /* GoalGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalGalleryView.swift; sourceTree = "<group>"; };
-		C3C705122858E3050069B776 /* GoalWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GoalWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		C3C705162858E3050069B776 /* GoalWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWidget.swift; sourceTree = "<group>"; };
-		C3C705182858E3050069B776 /* GoalWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = GoalWidget.intentdefinition; sourceTree = "<group>"; };
+		C386786A284E5142007A4F2F /* TodayAimEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayAimEntity.swift; sourceTree = "<group>"; };
+		C386786C284E5510007A4F2F /* AimManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimManager.swift; sourceTree = "<group>"; };
+		C3867870284E8C9C007A4F2F /* NewAimAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAimAlert.swift; sourceTree = "<group>"; };
+		C3867872284EEBC0007A4F2F /* AimGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimGalleryView.swift; sourceTree = "<group>"; };
+		C3C705122858E3050069B776 /* AimWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AimWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3C705162858E3050069B776 /* AimWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimWidget.swift; sourceTree = "<group>"; };
+		C3C705182858E3050069B776 /* AimWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = AimWidget.intentdefinition; sourceTree = "<group>"; };
 		C3C705192858E3070069B776 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3C7051B2858E3070069B776 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3D8DFC1285932F700519CCD /* Stash.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stash.xcdatamodel; sourceTree = "<group>"; };
@@ -106,9 +120,9 @@
 		C3867850284E5042007A4F2F = {
 			isa = PBXGroup;
 			children = (
-				C37AE4B4286019F5008EE605 /* GoalWidgetExtension.entitlements */,
-				C386785B284E5042007A4F2F /* OneGoal */,
-				C3C705152858E3050069B776 /* GoalWidget */,
+				C37AE4B4286019F5008EE605 /* AimWidgetExtension.entitlements */,
+				C386785B284E5042007A4F2F /* TodayAim */,
+				C3C705152858E3050069B776 /* AimWidget */,
 				C3FA7BD52858DBE000B2B2D5 /* Frameworks */,
 				C386785A284E5042007A4F2F /* Products */,
 			);
@@ -117,23 +131,23 @@
 		C386785A284E5042007A4F2F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C3867859284E5042007A4F2F /* OneGoal.app */,
-				C3C705122858E3050069B776 /* GoalWidgetExtension.appex */,
+				C3867859284E5042007A4F2F /* Today Aim.app */,
+				C3C705122858E3050069B776 /* AimWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C386785B284E5042007A4F2F /* OneGoal */ = {
+		C386785B284E5042007A4F2F /* TodayAim */ = {
 			isa = PBXGroup;
 			children = (
-				C386785C284E5042007A4F2F /* OneGoalApp.swift */,
+				C386785C284E5042007A4F2F /* TodayAimApp.swift */,
 				C386786E284E5517007A4F2F /* Views */,
 				C386786F284E5524007A4F2F /* Model */,
 				C3867860284E5049007A4F2F /* Assets.xcassets */,
 				C3867862284E5049007A4F2F /* Preview Content */,
 				C3D8DFC0285932F700519CCD /* Stash.xcdatamodeld */,
 			);
-			path = OneGoal;
+			path = TodayAim;
 			sourceTree = "<group>";
 		};
 		C3867862284E5049007A4F2F /* Preview Content */ = {
@@ -147,9 +161,9 @@
 		C386786E284E5517007A4F2F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C3867870284E8C9C007A4F2F /* NewGoalAlert.swift */,
+				C3867870284E8C9C007A4F2F /* NewAimAlert.swift */,
 				C386785E284E5042007A4F2F /* TodayView.swift */,
-				C3867872284EEBC0007A4F2F /* GoalGalleryView.swift */,
+				C3867872284EEBC0007A4F2F /* AimGalleryView.swift */,
 				C3FA7BCC2853D75300B2B2D5 /* BottomBarView.swift */,
 				C3FA7BCE2858568E00B2B2D5 /* CalendarTabView.swift */,
 			);
@@ -159,21 +173,21 @@
 		C386786F284E5524007A4F2F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C386786C284E5510007A4F2F /* GoalManager.swift */,
-				C386786A284E5142007A4F2F /* GoalEntity.swift */,
+				C386786C284E5510007A4F2F /* AimManager.swift */,
+				C386786A284E5142007A4F2F /* TodayAimEntity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		C3C705152858E3050069B776 /* GoalWidget */ = {
+		C3C705152858E3050069B776 /* AimWidget */ = {
 			isa = PBXGroup;
 			children = (
-				C3C705162858E3050069B776 /* GoalWidget.swift */,
-				C3C705182858E3050069B776 /* GoalWidget.intentdefinition */,
+				C3C705162858E3050069B776 /* AimWidget.swift */,
+				C3C705182858E3050069B776 /* AimWidget.intentdefinition */,
 				C3C705192858E3070069B776 /* Assets.xcassets */,
 				C3C7051B2858E3070069B776 /* Info.plist */,
 			);
-			path = GoalWidget;
+			path = AimWidget;
 			sourceTree = "<group>";
 		};
 		C3FA7BD52858DBE000B2B2D5 /* Frameworks */ = {
@@ -188,9 +202,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C3867858284E5042007A4F2F /* OneGoal */ = {
+		C3867858284E5042007A4F2F /* Today Aim */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C3867867284E5049007A4F2F /* Build configuration list for PBXNativeTarget "OneGoal" */;
+			buildConfigurationList = C3867867284E5049007A4F2F /* Build configuration list for PBXNativeTarget "Today Aim" */;
 			buildPhases = (
 				C3867855284E5042007A4F2F /* Sources */,
 				C3867856284E5042007A4F2F /* Frameworks */,
@@ -202,18 +216,20 @@
 			dependencies = (
 				C3C7051F2858E3070069B776 /* PBXTargetDependency */,
 				C38CE247288662CD005AE55E /* PBXTargetDependency */,
+				C3A25FB7288674A60095323C /* PBXTargetDependency */,
+				C3A25FB9288674AE0095323C /* PBXTargetDependency */,
 			);
-			name = OneGoal;
+			name = "Today Aim";
 			packageProductDependencies = (
 				C37AE4B6286B8C1E008EE605 /* SwiftUICalendar */,
 			);
 			productName = OneGoal;
-			productReference = C3867859284E5042007A4F2F /* OneGoal.app */;
+			productReference = C3867859284E5042007A4F2F /* Today Aim.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C3C705112858E3050069B776 /* GoalWidgetExtension */ = {
+		C3C705112858E3050069B776 /* AimWidgetExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C3C705212858E3070069B776 /* Build configuration list for PBXNativeTarget "GoalWidgetExtension" */;
+			buildConfigurationList = C3C705212858E3070069B776 /* Build configuration list for PBXNativeTarget "AimWidgetExtension" */;
 			buildPhases = (
 				C3C7050E2858E3050069B776 /* Sources */,
 				C3C7050F2858E3050069B776 /* Frameworks */,
@@ -223,9 +239,9 @@
 			);
 			dependencies = (
 			);
-			name = GoalWidgetExtension;
+			name = AimWidgetExtension;
 			productName = GoalWidgetExtension;
-			productReference = C3C705122858E3050069B776 /* GoalWidgetExtension.appex */;
+			productReference = C3C705122858E3050069B776 /* AimWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -246,7 +262,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C3867854284E5042007A4F2F /* Build configuration list for PBXProject "OneGoal" */;
+			buildConfigurationList = C3867854284E5042007A4F2F /* Build configuration list for PBXProject "Today Aim" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -262,8 +278,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C3867858284E5042007A4F2F /* OneGoal */,
-				C3C705112858E3050069B776 /* GoalWidgetExtension */,
+				C3867858284E5042007A4F2F /* Today Aim */,
+				C3C705112858E3050069B776 /* AimWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -293,15 +309,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3867871284E8C9C007A4F2F /* NewGoalAlert.swift in Sources */,
-				C3867873284EEBC1007A4F2F /* GoalGalleryView.swift in Sources */,
+				C3867871284E8C9C007A4F2F /* NewAimAlert.swift in Sources */,
+				C3867873284EEBC1007A4F2F /* AimGalleryView.swift in Sources */,
 				C3FA7BCF2858568E00B2B2D5 /* CalendarTabView.swift in Sources */,
 				C386785F284E5042007A4F2F /* TodayView.swift in Sources */,
-				C386786B284E5142007A4F2F /* GoalEntity.swift in Sources */,
+				C386786B284E5142007A4F2F /* TodayAimEntity.swift in Sources */,
 				C3FA7BCD2853D75300B2B2D5 /* BottomBarView.swift in Sources */,
-				C386786D284E5510007A4F2F /* GoalManager.swift in Sources */,
-				C3C7051D2858E3070069B776 /* GoalWidget.intentdefinition in Sources */,
-				C386785D284E5042007A4F2F /* OneGoalApp.swift in Sources */,
+				C386786D284E5510007A4F2F /* AimManager.swift in Sources */,
+				C3C7051D2858E3070069B776 /* AimWidget.intentdefinition in Sources */,
+				C386785D284E5042007A4F2F /* TodayAimApp.swift in Sources */,
 				C3D8DFC2285932F700519CCD /* Stash.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,8 +326,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3C705172858E3050069B776 /* GoalWidget.swift in Sources */,
-				C3C7051C2858E3070069B776 /* GoalWidget.intentdefinition in Sources */,
+				C3C705172858E3050069B776 /* AimWidget.swift in Sources */,
+				C3C7051C2858E3070069B776 /* AimWidget.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,12 +336,22 @@
 /* Begin PBXTargetDependency section */
 		C38CE247288662CD005AE55E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C3C705112858E3050069B776 /* GoalWidgetExtension */;
+			target = C3C705112858E3050069B776 /* AimWidgetExtension */;
 			targetProxy = C38CE246288662CD005AE55E /* PBXContainerItemProxy */;
+		};
+		C3A25FB7288674A60095323C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C3C705112858E3050069B776 /* AimWidgetExtension */;
+			targetProxy = C3A25FB6288674A60095323C /* PBXContainerItemProxy */;
+		};
+		C3A25FB9288674AE0095323C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C3C705112858E3050069B776 /* AimWidgetExtension */;
+			targetProxy = C3A25FB8288674AE0095323C /* PBXContainerItemProxy */;
 		};
 		C3C7051F2858E3070069B776 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C3C705112858E3050069B776 /* GoalWidgetExtension */;
+			target = C3C705112858E3050069B776 /* AimWidgetExtension */;
 			targetProxy = C3C7051E2858E3070069B776 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -453,7 +479,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"OneGoal/Preview Content\"";
 				DEVELOPMENT_TEAM = LV4FAWVX8S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -469,8 +494,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.alecfrey.OneGoal;
-				PRODUCT_NAME = OneGoal;
+				PRODUCT_BUNDLE_IDENTIFIER = me.alecfrey.TodayAim;
+				PRODUCT_NAME = "Today Aim";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -485,7 +510,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"OneGoal/Preview Content\"";
 				DEVELOPMENT_TEAM = LV4FAWVX8S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -501,8 +525,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.alecfrey.OneGoal;
-				PRODUCT_NAME = OneGoal;
+				PRODUCT_BUNDLE_IDENTIFIER = me.alecfrey.TodayAim;
+				PRODUCT_NAME = "Today Aim";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -517,9 +541,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LV4FAWVX8S;
+				GCC_OPTIMIZATION_LEVEL = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GoalWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = GoalWidget;
+				INFOPLIST_FILE = AimWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AimWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -527,7 +552,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.alecfrey.OneGoal.GoalWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = me.alecfrey.TodayAim.AimWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -544,9 +569,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LV4FAWVX8S;
+				GCC_OPTIMIZATION_LEVEL = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GoalWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = GoalWidget;
+				INFOPLIST_FILE = AimWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AimWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -554,7 +580,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.alecfrey.OneGoal.GoalWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = me.alecfrey.TodayAim.AimWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -566,7 +592,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C3867854284E5042007A4F2F /* Build configuration list for PBXProject "OneGoal" */ = {
+		C3867854284E5042007A4F2F /* Build configuration list for PBXProject "Today Aim" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C3867865284E5049007A4F2F /* Debug */,
@@ -575,7 +601,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C3867867284E5049007A4F2F /* Build configuration list for PBXNativeTarget "OneGoal" */ = {
+		C3867867284E5049007A4F2F /* Build configuration list for PBXNativeTarget "Today Aim" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C3867868284E5049007A4F2F /* Debug */,
@@ -584,7 +610,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C3C705212858E3070069B776 /* Build configuration list for PBXNativeTarget "GoalWidgetExtension" */ = {
+		C3C705212858E3070069B776 /* Build configuration list for PBXNativeTarget "AimWidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C3C705222858E3070069B776 /* Debug */,

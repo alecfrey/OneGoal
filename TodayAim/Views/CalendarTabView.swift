@@ -1,6 +1,6 @@
 //
 //  CalendarView.swift
-//  OneGoal
+//  Today Aim
 //
 //  Created by Alec Frey on 6/14/22.
 //
@@ -20,8 +20,8 @@ struct CalendarTabView: View {
     @ObservedObject var controller = CalendarController()
     var isFavorited: Bool = true
     @State var focusDate: YearMonthDay? = nil
-    @State var focusInfo: [GoalEntity]? = nil
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \GoalEntity.date, ascending: false)]) private var goals: FetchedResults<GoalEntity>
+    @State var focusInfo: [TodayAimEntity]? = nil
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \TodayAimEntity.date, ascending: false)]) private var aims: FetchedResults<TodayAimEntity>
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.colorScheme) var colorScheme
     
@@ -33,13 +33,13 @@ struct CalendarTabView: View {
         }
     }
     
-    var informations: [YearMonthDay: [GoalEntity]] {
-        var info = [YearMonthDay: [GoalEntity]]()
-        for goal in goals {
+    var informations: [YearMonthDay: [TodayAimEntity]] {
+        var info = [YearMonthDay: [TodayAimEntity]]()
+        for aim in aims {
             var date = YearMonthDay.current
-            date = date.addDay(value: goal.offsetFromCurrentDay)
+            date = date.addDay(value: aim.offsetFromCurrentDay)
             info[date] = []
-            info[date]?.append(goal)
+            info[date]?.append(aim)
         }
         return info
     }
@@ -94,21 +94,21 @@ struct CalendarTabView: View {
                                     .padding(2)
                             }
                             if let infos = informations[date] {
-                                ForEach(infos) { goal in
+                                ForEach(infos) { aim in
                                     if focusInfo != nil {
                                         Rectangle()
-                                            .fill((goal.isAccomplished ? accomplishedColor : notAccomplishedColor(goal: goal)).opacity(0.75))
+                                            .fill((aim.isAccomplished ? accomplishedColor : notAccomplishedColor(aim: aim)).opacity(0.75))
                                             .frame(width: geometry.size.width, height: 4, alignment: .center)
                                             .cornerRadius(2)
                                             .opacity(date.isFocusYearMonth == true ? 1 : 0.4)
                                     } else {
-                                        Text(goal.goalDescription!)
+                                        Text(aim.aimDescription!)
                                             .lineLimit(1)
                                             .foregroundColor(.white)
                                             .font(.system(size: 8, weight: .bold, design: .default))
                                             .padding(EdgeInsets(top: 2, leading: 4, bottom: 2, trailing: 4))
                                             .frame(width: geometry.size.width, alignment: .center)
-                                            .background((goal.isAccomplished ? accomplishedColor : notAccomplishedColor(goal: goal)).opacity(0.75))
+                                            .background((aim.isAccomplished ? accomplishedColor : notAccomplishedColor(aim: aim)).opacity(0.75))
                                             .cornerRadius(4)
                                             .opacity(date.isFocusYearMonth == true ? 1 : 0.4)
                                     }
@@ -120,7 +120,7 @@ struct CalendarTabView: View {
                         .cornerRadius(2)
                         .contentShape(Rectangle())
                         .onTapGesture {
-                            withAnimation {
+                            withAnimation(.easeInOut(duration: 0.3)) {
                                 if focusDate == date {
                                     focusDate = nil
                                     focusInfo = nil
@@ -136,28 +136,28 @@ struct CalendarTabView: View {
                 if let infos = focusInfo {
                     ScrollView {
                         LazyVStack() {
-                            ForEach(infos) { goal in
+                            ForEach(infos) { aim in
                                 VStack(alignment: .leading, spacing: 10) {
-                                    CardView(goal: goal, forCalendarView: true)
+                                    CardView(aim: aim, forCalendarView: true)
                                         .padding(.horizontal)
                                 }
                                 .padding(.vertical, 12)
-                                .background(goal.isAccomplished ? accomplishedColor : notAccomplishedColor(goal: goal))
+                                .background(aim.isAccomplished ? accomplishedColor : notAccomplishedColor(aim: aim))
                                 .cornerRadius(12)
                                 .background(
                                     RoundedRectangle(cornerRadius: 12)
-                                        .stroke((goal.isFavorited ? .yellow : .clear), lineWidth: 6)
+                                        .stroke((aim.isFavorited ? .yellow : .clear), lineWidth: 6)
                                 )
                                 .padding(3)
                                 .contextMenu {
-                                    if goal.isAccomplished {
+                                    if aim.isAccomplished {
                                         Button("Toggle Favorited") {
-                                            goal.isFavorited.toggle()
+                                            aim.isFavorited.toggle()
                                             try? viewContext.save()
                                         }
                                     }
 //                                    Button(role: .destructive) {
-//                                        viewContext.delete(goal)
+//                                        viewContext.delete(aim)
 //                                        try? viewContext.save()
 //                                    } label: {
 //                                        Text("Delete")
@@ -178,7 +178,7 @@ struct CalendarTabView: View {
 //                            }
 //                        )
                     }
-                    .frame(width: reader.size.width, height: 160, alignment: .center)
+                    .frame(width: reader.size.width, height: 180, alignment: .center)
                 }
             }
         }

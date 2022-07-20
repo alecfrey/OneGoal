@@ -1,18 +1,18 @@
 //
-//  GoalGallery.swift
-//  OneGoal
+//  AimGallery.swift
+//  Today Aim
 //
 //  Created by Alec Frey on 6/6/22.
 //
 
 import SwiftUI
 
-struct GoalGalleryView: View {
-    @StateObject var model: GoalManager
+struct AimGalleryView: View {
+    @StateObject var model: AimManager
     var gallerySelection: GallerySelection
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \GoalEntity.date, ascending: false)]) private var goals: FetchedResults<GoalEntity>
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \TodayAimEntity.date, ascending: false)]) private var aims: FetchedResults<TodayAimEntity>
 
     var accomplishedColor: Color {
         if colorScheme == .light {
@@ -22,39 +22,38 @@ struct GoalGalleryView: View {
         }
     }
 
-    var filteredResults: [GoalEntity] {
-        goals.filter { goal in
+    var filteredResults: [TodayAimEntity] {
+        aims.filter { aim in
             switch gallerySelection {
                 case .all:
                     return true
                 case .accomplished:
-                    return goal.isAccomplished
+                    return aim.isAccomplished
                 case .favorited:
-                    return goal.isFavorited
+                    return aim.isFavorited
             }
         }
     }
-    
+
     var body: some View {
         ScrollView {
             LazyVStack() {
-                ForEach(filteredResults) { goal in
+                ForEach(filteredResults) { aim in
                     VStack(alignment: .leading, spacing: 10) {
-                        CardView(goal: goal, forCalendarView: false)
+                        CardView(aim: aim, forCalendarView: false)
                             .padding(.horizontal)
-
                     }
                     .padding(.vertical, 12)
-                    .background(goal.isAccomplished ? accomplishedColor : notAccomplishedColor(goal: goal))
+                    .background(aim.isAccomplished ? accomplishedColor : notAccomplishedColor(aim: aim))
                     .cornerRadius(12)
                     .background(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke((goal.isFavorited ? .yellow : .clear), lineWidth: 6)
+                            .stroke((aim.isFavorited ? .yellow : .clear), lineWidth: 6)
                     )
                     .padding(3)
                     .contextMenu {
                         Button(role: .destructive) {
-                            viewContext.delete(goal)
+                            viewContext.delete(aim)
                             try? viewContext.save()
                         } label: {
                             Text("Delete")
@@ -68,29 +67,29 @@ struct GoalGalleryView: View {
     }
 }
 
-func notAccomplishedColor(goal: GoalEntity) -> Color {
-    if goal.wasNotAccomplished {
+func notAccomplishedColor(aim: TodayAimEntity) -> Color {
+    if aim.wasNotAccomplished {
         return .red
     }
     return .gray
 }
                          
 struct CardView: View {
-    @ObservedObject var goal: GoalEntity
+    @ObservedObject var aim: TodayAimEntity
     @State var isExpanded = false
     var forCalendarView: Bool
     
     var body: some View {
         HStack {
-            Text(goal.dateFormatted())
+            Text(aim.dateFormatted())
                 .font(.title2)
                 .fontWeight(.bold)
             Spacer()
             if forCalendarView {
-                if goal.timeAccomplished != nil {
-                    Text(String(goal.timeAccomplished ?? ""))
+                if aim.timeAccomplished != nil {
+                    Text(String(aim.timeAccomplished ?? ""))
                         .font(.caption2)
-                } else if goal.wasNotAccomplished {
+                } else if aim.wasNotAccomplished {
                     Text("Overdue")
                         .font(.caption2)
                 }
@@ -105,28 +104,26 @@ struct CardView: View {
             }
         }
         .frame(maxWidth: .infinity)
-        Text(goal.goalDescription ?? "")
+        Text(aim.aimDescription ?? "")
             .font(.title2)
             .fontWeight(.thin)
             .multilineTextAlignment(.leading)
         if isExpanded && !forCalendarView {
-            ExpandedCardView(goal: goal)
+            ExpandedCardView(aim: aim)
                 .padding(.top)
         }
     }
 }
 
 struct ExpandedCardView: View {
-    var goal: GoalEntity
-    @State private var scale = 1.0
-
+    var aim: TodayAimEntity
 
     var body: some View {
         HStack {
             Spacer()
-            AccomplishedView(goal: goal, forTodayView: false)
+            AccomplishedView(aim: aim, forTodayView: false)
                 .transition(.move(edge: .leading))
-               // .animation(.easeInOut(duration: 0.4))
+                .animation(.easeInOut(duration: 0.4))
             Spacer()
         }
         .padding(.horizontal)
@@ -134,30 +131,31 @@ struct ExpandedCardView: View {
 }
 
 struct AccomplishedView: View {
-    @ObservedObject var goal: GoalEntity
+    @ObservedObject var aim: TodayAimEntity
     var forTodayView: Bool
     @Environment(\.managedObjectContext) private var viewContext
+    @State var isAnimating = false
 
     var body: some View {
         HStack {
-            if goal.timeAccomplished != nil {
-                StarView(goal: goal, forTodayView: forTodayView)
+            if aim.timeAccomplished != nil {
+                StarView(aim: aim, forTodayView: forTodayView)
                 Spacer()
             }
             Button(action: {
-                if goal.goalWasCreatedToday {
-                    goal.isAccomplished = true
+                if aim.wasCreatedToday {
+                    aim.isAccomplished = true
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "h:mm a"
-                    goal.timeAccomplished = String(dateFormatter.string(from: Date()))
+                    aim.timeAccomplished = String(dateFormatter.string(from: Date()))
                 }
                 try? viewContext.save()
             }) {
                 VStack {
-                    if !goal.wasNotAccomplished {
-                        Image(systemName: goal.isAccomplished ? "checkmark.square.fill" : "checkmark.square")
+                    if !aim.wasNotAccomplished {
+                        Image(systemName: aim.isAccomplished ? "checkmark.square.fill" : "checkmark.square")
                             .resizable()
-                            .frame(width: goal.isAccomplished  ? 25 : 65, height: goal.isAccomplished  ? 25 : 65)
+                            .frame(width: aim.isAccomplished  ? 25 : 65, height: aim.isAccomplished  ? 25 : 65)
                     } else {
                         Image(systemName: "multiply.square.fill")
                             .resizable()
@@ -165,10 +163,10 @@ struct AccomplishedView: View {
                     }
                     Text("Accomplished")
                         .font(.caption)
-                    if goal.timeAccomplished != nil {
-                        Text(String(goal.timeAccomplished ?? ""))
+                    if aim.timeAccomplished != nil {
+                        Text(String(aim.timeAccomplished ?? ""))
                             .font(.caption2)
-                    } else if goal.wasNotAccomplished {
+                    } else if aim.wasNotAccomplished {
                         Text("Overdue")
                             .font(.caption2)
                     }
@@ -176,25 +174,27 @@ struct AccomplishedView: View {
             }
             .font(.title)
             .buttonStyle(BorderlessButtonStyle())
-            .disabled(goal.isAccomplished || goal.wasNotAccomplished) // Disables after accomplishing
+            .disabled(aim.isAccomplished || aim.wasNotAccomplished) // Disables after accomplishing
         }
     }
 }
 
+
+
 struct StarView: View {
-    @ObservedObject var goal: GoalEntity
+    @ObservedObject var aim: TodayAimEntity
     var forTodayView: Bool
     @Environment(\.managedObjectContext) private var viewContext
 
     var body: some View {
         Button(action: {
-            goal.isFavorited.toggle()
+            aim.isFavorited.toggle()
             try? viewContext.save()
         }) {
             VStack {
-                Image(systemName: goal.isFavorited ? "star.square.fill" : "star.square")
+                Image(systemName: aim.isFavorited ? "star.square.fill" : "star.square")
                     .resizable()
-                    .frame(width: goal.isFavorited  ? 25 : 65, height: goal.isFavorited  ? 25 : 65)
+                    .frame(width: aim.isFavorited  ? 25 : 65, height: aim.isFavorited  ? 25 : 65)
                 Text("Favorited")
                     .font(.caption)
             }
@@ -206,9 +206,9 @@ struct StarView: View {
 }
 
 /*
-struct GoalGalleryView_Previews: PreviewProvider {
+struct AimGalleryView_Previews: PreviewProvider {
     static var previews: some View {
-        GoalGalleryView()
+        AimGalleryView()
     }
 }
 */

@@ -1,6 +1,6 @@
 //
-//  TabView.swift
-//  OneGoal
+//  BottomBarView.swift
+//  Today Aim
 //
 //  Created by Alec Frey on 6/10/22.
 //
@@ -22,10 +22,10 @@ enum GallerySelection {
 }
 
 struct BottomBarView: View {
-    @StateObject var viewModel = GoalManager()
+    @StateObject var viewModel = AimManager()
     @State private var gallerySelection = GallerySelection.all
     let sortOptions: [GallerySelection] = [.all, .accomplished, .favorited]
-    
+   
     var body: some View {
         TabView {
             NavigationView {
@@ -38,7 +38,7 @@ struct BottomBarView: View {
                 Text("Today")
             }
             NavigationView {
-                GoalGalleryView(model: viewModel, gallerySelection: gallerySelection)
+                AimGalleryView(model: viewModel, gallerySelection: gallerySelection)
                     .navigationTitle("Gallery")
                     .toolbar {
                         Picker("Sort", selection: $gallerySelection) {
