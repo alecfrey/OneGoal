@@ -1,7 +1,7 @@
 # TodayAim - Track Your Accomplishments
 
 Today Aim was created to help highlight all the tasks people accomplish in their daily lives.
-  Download on the App Store
+Download now on the App Store.
 
 Brief Description:
 
