@@ -33,6 +33,13 @@ extension TodayAimEntity {
         return Calendar.current.isDateInToday(date)
     }
     
+    var wasCreatedThisMonth: Bool {
+        guard let date = self.date else {
+            return false
+        }
+        return Calendar.current.isDate(date, equalTo: Date(), toGranularity: .month)
+    }
+    
     var offsetFromCurrentDay: Int {
         let calendar = Calendar.current
         guard let date = self.date else {

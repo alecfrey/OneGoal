@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum GallerySelection {
+enum RecentsSelection {
     case all
     case accomplished
     case favorited
@@ -23,8 +23,8 @@ enum GallerySelection {
 
 struct BottomBarView: View {
     @StateObject var viewModel = AimManager()
-    @State private var gallerySelection = GallerySelection.all
-    let sortOptions: [GallerySelection] = [.all, .accomplished, .favorited]
+    @State private var recentsSelection = RecentsSelection.all
+    let sortOptions: [RecentsSelection] = [.all, .accomplished, .favorited]
    
     var body: some View {
         TabView {
@@ -38,10 +38,10 @@ struct BottomBarView: View {
                 Text("Today")
             }
             NavigationView {
-                AimGalleryView(model: viewModel, gallerySelection: gallerySelection)
-                    .navigationTitle("Gallery")
+                RecentsView(model: viewModel, recentsSelection: recentsSelection)
+                    .navigationTitle("Recents")
                     .toolbar {
-                        Picker("Sort", selection: $gallerySelection) {
+                        Picker("Sort", selection: $recentsSelection) {
                             ForEach(sortOptions, id: \.self) {
                                 Text($0.displayString)
                             }
@@ -51,7 +51,7 @@ struct BottomBarView: View {
             }
             .tabItem {
                 Image(systemName: "square.stack.fill").padding()
-                Text("Gallery")
+                Text("Recents")
             }
             NavigationView {
                 CalendarTabView()

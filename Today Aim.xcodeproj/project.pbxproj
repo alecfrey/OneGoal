@@ -15,7 +15,7 @@
 		C386786B284E5142007A4F2F /* TodayAimEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386786A284E5142007A4F2F /* TodayAimEntity.swift */; };
 		C386786D284E5510007A4F2F /* AimManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C386786C284E5510007A4F2F /* AimManager.swift */; };
 		C3867871284E8C9C007A4F2F /* NewAimAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3867870284E8C9C007A4F2F /* NewAimAlert.swift */; };
-		C3867873284EEBC1007A4F2F /* AimGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3867872284EEBC0007A4F2F /* AimGalleryView.swift */; };
+		C3867873284EEBC1007A4F2F /* RecentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3867872284EEBC0007A4F2F /* RecentsView.swift */; };
 		C3C705132858E3050069B776 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FA7BD62858DBE000B2B2D5 /* WidgetKit.framework */; };
 		C3C705142858E3050069B776 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FA7BD82858DBE000B2B2D5 /* SwiftUI.framework */; };
 		C3C705172858E3050069B776 /* AimWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C705162858E3050069B776 /* AimWidget.swift */; };
@@ -83,7 +83,7 @@
 		C386786A284E5142007A4F2F /* TodayAimEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayAimEntity.swift; sourceTree = "<group>"; };
 		C386786C284E5510007A4F2F /* AimManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimManager.swift; sourceTree = "<group>"; };
 		C3867870284E8C9C007A4F2F /* NewAimAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAimAlert.swift; sourceTree = "<group>"; };
-		C3867872284EEBC0007A4F2F /* AimGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimGalleryView.swift; sourceTree = "<group>"; };
+		C3867872284EEBC0007A4F2F /* RecentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsView.swift; sourceTree = "<group>"; };
 		C3C705122858E3050069B776 /* AimWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AimWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C705162858E3050069B776 /* AimWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimWidget.swift; sourceTree = "<group>"; };
 		C3C705182858E3050069B776 /* AimWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = AimWidget.intentdefinition; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 			children = (
 				C3867870284E8C9C007A4F2F /* NewAimAlert.swift */,
 				C386785E284E5042007A4F2F /* TodayView.swift */,
-				C3867872284EEBC0007A4F2F /* AimGalleryView.swift */,
+				C3867872284EEBC0007A4F2F /* RecentsView.swift */,
 				C3FA7BCC2853D75300B2B2D5 /* BottomBarView.swift */,
 				C3FA7BCE2858568E00B2B2D5 /* CalendarTabView.swift */,
 			);
@@ -310,7 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3867871284E8C9C007A4F2F /* NewAimAlert.swift in Sources */,
-				C3867873284EEBC1007A4F2F /* AimGalleryView.swift in Sources */,
+				C3867873284EEBC1007A4F2F /* RecentsView.swift in Sources */,
 				C3FA7BCF2858568E00B2B2D5 /* CalendarTabView.swift in Sources */,
 				C386785F284E5042007A4F2F /* TodayView.swift in Sources */,
 				C386786B284E5142007A4F2F /* TodayAimEntity.swift in Sources */,

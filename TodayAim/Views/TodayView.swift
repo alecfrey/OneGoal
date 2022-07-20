@@ -86,7 +86,8 @@ struct WriteAimView: View {
                 try? viewContext.save()
             })
             NewAimAlert(isShown: $isEdited, text: $text, title: "Edit Aim Description", onDone: { text in
-                todayAim!.aimDescription = text.trimmingCharacters(in: .whitespaces)
+                _ = TodayAimEntity(aimDescription: text.trimmingCharacters(in: .whitespaces), context: viewContext)
+                //todayAim!.aimDescription = text.trimmingCharacters(in: .whitespaces)
                 try? viewContext.save()
             })
         }

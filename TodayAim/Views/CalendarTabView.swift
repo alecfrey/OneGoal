@@ -24,7 +24,9 @@ struct CalendarTabView: View {
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \TodayAimEntity.date, ascending: false)]) private var aims: FetchedResults<TodayAimEntity>
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.colorScheme) var colorScheme
-    
+    @State private var recentsSelection = RecentsSelection.all
+    let sortOptions: [RecentsSelection] = [.all, .accomplished, .favorited]
+
     var accomplishedColor: Color {
         if colorScheme == .light {
             return .green
@@ -35,13 +37,26 @@ struct CalendarTabView: View {
     
     var informations: [YearMonthDay: [TodayAimEntity]] {
         var info = [YearMonthDay: [TodayAimEntity]]()
-        for aim in aims {
+        for aim in filteredResults {
             var date = YearMonthDay.current
             date = date.addDay(value: aim.offsetFromCurrentDay)
             info[date] = []
             info[date]?.append(aim)
         }
         return info
+    }
+    
+    var filteredResults: [TodayAimEntity] {
+        aims.filter { aim in
+            switch recentsSelection {
+                case .all:
+                    return true
+                case .accomplished:
+                    return aim.isAccomplished
+                case .favorited:
+                    return aim.isFavorited
+            }
+        }
     }
 
     var body: some View {
@@ -52,22 +67,37 @@ struct CalendarTabView: View {
                         controller.scrollTo(controller.yearMonth.addMonth(value: -1), isAnimate: true)
                     }label : {
                         Image(systemName: "chevron.left")
-                            .font(.headline)
+                            .font(.title3)
                     }
                     .padding(8)
                     Spacer()
                     Text("\(controller.yearMonth.monthShortString) \(String(controller.yearMonth.year))")
-                        .font(.title3)
+                        .font(.title2)
                         .fontWeight(.medium)
                         .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
                     Spacer()
-                    Button {
-                        controller.scrollTo(controller.yearMonth.addMonth(value: 1), isAnimate: true)
-                    }label : {
-                        Image(systemName: "chevron.right")
-                            .font(.headline)
+                    HStack {
+                        if focusInfo == nil {
+                            Menu(content: {
+                                Picker("Filter", selection: $recentsSelection, content: {
+                                    ForEach(sortOptions, id: \.self) {
+                                        Text($0.displayString)
+                                    }
+                                })
+                            }, label: {
+                                Image(systemName: recentsSelection == RecentsSelection.all ? "line.horizontal.3.decrease.circle" : "line.horizontal.3.decrease.circle.fill")
+                                    .font(.title3)
+                            })
+                            .pickerStyle(.menu)
+                        }
+                        Button {
+                            controller.scrollTo(controller.yearMonth.addMonth(value: 1), isAnimate: true)
+                        }label : {
+                            Image(systemName: "chevron.right")
+                                .font(.title3)
+                        }
+                        .padding(8)
                     }
-                    .padding(8)
                 }
                 .padding([.top, .leading, .trailing])
                 CalendarView(controller, header: { week in
@@ -156,12 +186,17 @@ struct CalendarTabView: View {
                                             try? viewContext.save()
                                         }
                                     }
-//                                    Button(role: .destructive) {
-//                                        viewContext.delete(aim)
-//                                        try? viewContext.save()
-//                                    } label: {
-//                                        Text("Delete")
-//                                    }
+                                    Button(role: .destructive) {
+                                        withAnimation(.easeInOut(duration: 0.4)) {
+                                            focusInfo = nil
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                                            viewContext.delete(aim)
+                                            try? viewContext.save()
+                                        }
+                                    } label: {
+                                        Text("Delete")
+                                    }
                                 }
                                 .shadow(radius: 0.5)
                             }

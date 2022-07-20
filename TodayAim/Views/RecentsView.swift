@@ -1,5 +1,5 @@
 //
-//  AimGallery.swift
+//  RecentsView.swift
 //  Today Aim
 //
 //  Created by Alec Frey on 6/6/22.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct AimGalleryView: View {
+struct RecentsView: View {
     @StateObject var model: AimManager
-    var gallerySelection: GallerySelection
+    var recentsSelection: RecentsSelection
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \TodayAimEntity.date, ascending: false)]) private var aims: FetchedResults<TodayAimEntity>
@@ -24,7 +24,7 @@ struct AimGalleryView: View {
 
     var filteredResults: [TodayAimEntity] {
         aims.filter { aim in
-            switch gallerySelection {
+            switch recentsSelection {
                 case .all:
                     return true
                 case .accomplished:
@@ -37,29 +37,32 @@ struct AimGalleryView: View {
 
     var body: some View {
         ScrollView {
-            LazyVStack() {
+            VStack {
                 ForEach(filteredResults) { aim in
-                    VStack(alignment: .leading, spacing: 10) {
-                        CardView(aim: aim, forCalendarView: false)
-                            .padding(.horizontal)
-                    }
-                    .padding(.vertical, 12)
-                    .background(aim.isAccomplished ? accomplishedColor : notAccomplishedColor(aim: aim))
-                    .cornerRadius(12)
-                    .background(
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke((aim.isFavorited ? .yellow : .clear), lineWidth: 6)
-                    )
-                    .padding(3)
-                    .contextMenu {
-                        Button(role: .destructive) {
-                            viewContext.delete(aim)
-                            try? viewContext.save()
-                        } label: {
-                            Text("Delete")
+                   // if aim.wasCreatedThisMonth {
+                        VStack(alignment: .leading, spacing: 10) {
+                            CardView(aim: aim, forCalendarView: false)
+                                .padding(.horizontal)
                         }
-                    }
-                    .shadow(radius: 0.5)
+                        .padding(.vertical, 12)
+                        .background(aim.isAccomplished ? accomplishedColor : notAccomplishedColor(aim: aim))
+                        .cornerRadius(12)
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke((aim.isFavorited ? .yellow : .clear), lineWidth: 6)
+                        )
+                        .padding(3)
+                        .animation(.easeInOut(duration: 0.4))
+                        .contextMenu {
+                            Button(role: .destructive) {
+                                viewContext.delete(aim)
+                                try? viewContext.save()
+                            } label: {
+                                Text("Delete")
+                            }
+                        }
+                        .shadow(radius: 0.5)
+                    //}
                 }
             }
             .padding()
