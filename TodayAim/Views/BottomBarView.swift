@@ -41,12 +41,17 @@ struct BottomBarView: View {
                 RecentsView(model: viewModel, recentsSelection: recentsSelection)
                     .navigationTitle("Recents")
                     .toolbar {
-                        Picker("Sort", selection: $recentsSelection) {
-                            ForEach(sortOptions, id: \.self) {
-                                Text($0.displayString)
-                            }
-                        }
-                        .pickerStyle(.menu)
+                        Menu(content: {
+                            Picker("Filter", selection: $recentsSelection, content: {
+                                ForEach(sortOptions, id: \.self) {
+                                    Text($0.displayString)
+                                }
+                            })
+                        }, label: {
+                            Image(systemName: recentsSelection == RecentsSelection.all ? "line.horizontal.3.decrease.circle" : "line.horizontal.3.decrease.circle.fill")
+                                .font(.headline)
+                        })
+                       //.pickerStyle(.menu)
                     }
             }
             .tabItem {
@@ -56,7 +61,8 @@ struct BottomBarView: View {
             NavigationView {
                 CalendarTabView()
                     //.navigationTitle("Calendar")
-                    .navigationBarHidden(true)
+                    .navigationBarTitleDisplayMode(.inline)
+                    //.navigationBarHidden(true)
             }
             .tabItem {
                 Image(systemName: "calendar")

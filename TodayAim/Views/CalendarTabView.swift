@@ -18,7 +18,6 @@ extension YearMonthDay: Hashable {
 
 struct CalendarTabView: View {
     @ObservedObject var controller = CalendarController()
-    var isFavorited: Bool = true
     @State var focusDate: YearMonthDay? = nil
     @State var focusInfo: [TodayAimEntity]? = nil
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \TodayAimEntity.date, ascending: false)]) private var aims: FetchedResults<TodayAimEntity>
@@ -62,44 +61,6 @@ struct CalendarTabView: View {
     var body: some View {
         GeometryReader { reader in
             VStack {
-                HStack(alignment: .center, spacing: 0) {
-                    Button {
-                        controller.scrollTo(controller.yearMonth.addMonth(value: -1), isAnimate: true)
-                    }label : {
-                        Image(systemName: "chevron.left")
-                            .font(.title3)
-                    }
-                    .padding(8)
-                    Spacer()
-                    Text("\(controller.yearMonth.monthShortString) \(String(controller.yearMonth.year))")
-                        .font(.title2)
-                        .fontWeight(.medium)
-                        .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
-                    Spacer()
-                    HStack {
-                        if focusInfo == nil {
-                            Menu(content: {
-                                Picker("Filter", selection: $recentsSelection, content: {
-                                    ForEach(sortOptions, id: \.self) {
-                                        Text($0.displayString)
-                                    }
-                                })
-                            }, label: {
-                                Image(systemName: recentsSelection == RecentsSelection.all ? "line.horizontal.3.decrease.circle" : "line.horizontal.3.decrease.circle.fill")
-                                    .font(.title3)
-                            })
-                            .pickerStyle(.menu)
-                        }
-                        Button {
-                            controller.scrollTo(controller.yearMonth.addMonth(value: 1), isAnimate: true)
-                        }label : {
-                            Image(systemName: "chevron.right")
-                                .font(.title3)
-                        }
-                        .padding(8)
-                    }
-                }
-                .padding([.top, .leading, .trailing])
                 CalendarView(controller, header: { week in
                     GeometryReader { geometry in
                         Text(week.shortString)
@@ -112,14 +73,14 @@ struct CalendarTabView: View {
                         VStack(alignment: .leading, spacing: 2) {
                             if date.isToday {
                                 Text("\(date.day)")
-                                    .font(.footnote)
+                                    .font(.caption)
                                     .padding(2)
                                     .foregroundColor(.white)
                                     .background(Color.purple.opacity(0.85))
                                     .cornerRadius(14)
                             } else {
                                 Text("\(date.day)")
-                                    .font(.footnote)
+                                    .font(.caption)
                                     .opacity(date.isFocusYearMonth == true ? 1 : 0.4)
                                     .padding(2)
                             }
@@ -184,13 +145,19 @@ struct CalendarTabView: View {
                                         Button("Toggle Favorited") {
                                             aim.isFavorited.toggle()
                                             try? viewContext.save()
+                                            withAnimation(.easeInOut(duration: 0.3)) {
+                                                // If favorited is selected and then toggled on aim, this closes the view
+                                                if (recentsSelection == RecentsSelection.favorited) && !aim.isFavorited {
+                                                    focusInfo = nil
+                                                }
+                                            }
                                         }
                                     }
                                     Button(role: .destructive) {
-                                        withAnimation(.easeInOut(duration: 0.4)) {
+                                        withAnimation(.easeInOut(duration: 0.3)) {
                                             focusInfo = nil
                                         }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                                             viewContext.delete(aim)
                                             try? viewContext.save()
                                         }
@@ -216,6 +183,46 @@ struct CalendarTabView: View {
                     .frame(width: reader.size.width, height: 180, alignment: .center)
                 }
             }
+        }
+        .navigationBarTitle("\(controller.yearMonth.monthShortString) \(String(controller.yearMonth.year))")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    controller.scrollTo(controller.yearMonth.addMonth(value: -1), isAnimate: true)
+                }label : {
+                    Image(systemName: "chevron.left")
+                        .font(.headline)
+                }
+                .padding(8)
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                HStack {
+                    if focusInfo == nil {
+                        Menu(content: {
+                            Picker("Filter", selection: $recentsSelection, content: {
+                                ForEach(sortOptions, id: \.self) {
+                                    Text($0.displayString)
+                                }
+                            })
+                        }, label: {
+                            Image(systemName: recentsSelection == RecentsSelection.all ? "line.horizontal.3.decrease.circle" : "line.horizontal.3.decrease.circle.fill")
+                                .font(.headline)
+                        })
+                        //.pickerStyle(.menu)
+                    }
+                    Spacer()
+                    Button {
+                        controller.scrollTo(controller.yearMonth.addMonth(value: 1), isAnimate: true)
+                    }label : {
+                        Image(systemName: "chevron.right")
+                            .font(.headline)
+                    }
+                    .padding(8)
+                }
+            }
+        }
+        .onDisappear() {
+            focusInfo = nil
         }
     }
 }

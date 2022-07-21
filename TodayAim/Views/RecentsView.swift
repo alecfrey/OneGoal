@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct RecentsView: View {
     @StateObject var model: AimManager
@@ -13,7 +14,7 @@ struct RecentsView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \TodayAimEntity.date, ascending: false)]) private var aims: FetchedResults<TodayAimEntity>
-
+    
     var accomplishedColor: Color {
         if colorScheme == .light {
             return .green
@@ -21,9 +22,9 @@ struct RecentsView: View {
             return .green.opacity(0.75)
         }
     }
-
+    
     var filteredResults: [TodayAimEntity] {
-        aims.filter { aim in
+        var aims: [TodayAimEntity] = aims.filter { aim in
             switch recentsSelection {
                 case .all:
                     return true
@@ -33,36 +34,38 @@ struct RecentsView: View {
                     return aim.isFavorited
             }
         }
+        if aims.count > 15 {
+            aims = Array(aims.prefix(upTo: 15))
+        }
+        return aims
     }
 
     var body: some View {
         ScrollView {
             VStack {
                 ForEach(filteredResults) { aim in
-                   // if aim.wasCreatedThisMonth {
-                        VStack(alignment: .leading, spacing: 10) {
-                            CardView(aim: aim, forCalendarView: false)
-                                .padding(.horizontal)
+                    VStack(alignment: .leading, spacing: 10) {
+                        CardView(aim: aim, forCalendarView: false)
+                            .padding(.horizontal)
+                    }
+                    .padding(.vertical, 12)
+                    .background(aim.isAccomplished ? accomplishedColor : notAccomplishedColor(aim: aim))
+                    .cornerRadius(12)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke((aim.isFavorited ? .yellow : .clear), lineWidth: 6)
+                    )
+                    .padding(3)
+                    .animation(.easeInOut(duration: 0.4))
+                    .contextMenu {
+                        Button(role: .destructive) {
+                            viewContext.delete(aim)
+                            try? viewContext.save()
+                        } label: {
+                            Text("Delete")
                         }
-                        .padding(.vertical, 12)
-                        .background(aim.isAccomplished ? accomplishedColor : notAccomplishedColor(aim: aim))
-                        .cornerRadius(12)
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke((aim.isFavorited ? .yellow : .clear), lineWidth: 6)
-                        )
-                        .padding(3)
-                        .animation(.easeInOut(duration: 0.4))
-                        .contextMenu {
-                            Button(role: .destructive) {
-                                viewContext.delete(aim)
-                                try? viewContext.save()
-                            } label: {
-                                Text("Delete")
-                            }
-                        }
-                        .shadow(radius: 0.5)
-                    //}
+                    }
+                    .shadow(radius: 0.5)
                 }
             }
             .padding()
